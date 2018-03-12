@@ -14,7 +14,7 @@ public interface CourseService {
 
 	List<CourseModel> listAllCourse();
 	CourseModel addCourse(CourseModel courseModel);
-	int removeCourse(String name, int price);
+	int removeCourse(CourseModel courseModel);
 	CourseModel updateCourse(CourseModel courseModel);
 	
 }

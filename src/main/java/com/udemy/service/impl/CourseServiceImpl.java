@@ -51,9 +51,14 @@ public class CourseServiceImpl implements CourseService{
 
 
 	@Override
-	public int removeCourse(String name, int price) {
+	public int removeCourse(CourseModel courseModel) {
 		LOG.info("Call: CourseServiceImpl.removeCourse() ");
-		Course course = courseJpaRepository.findByNameOrPrice(name, price);
+		Course course = courseJpaRepository.findByNameOrPrice(courseModel.getName(), courseModel.getPrice());
+		if (course == null){
+			LOG.info("Valor 'course' es null");
+		}else{
+			LOG.info("Datos: delete" + course.toString());
+		}
 		courseJpaRepository.delete(course.getId());
 		return 0;
 	}
@@ -62,7 +67,13 @@ public class CourseServiceImpl implements CourseService{
 	@Override
 	public CourseModel updateCourse(CourseModel courseModel) {
 		LOG.info("CourseServiceImpl.updateCourse() ");
-		Course course = courseJpaRepository.save(courseConverter.modelToEntity(courseModel));
+		Course course = courseJpaRepository.findByName(courseModel.getName());
+		if (course != null && course.getName().equals(courseModel.getName())){
+			LOG.info("Datos update: " + course.toString());
+		}else{
+			LOG.info("Valor 'course' es null");
+		}
+		course = courseJpaRepository.save(course);
 		return courseConverter.entityToModel(course);
 	}
 	

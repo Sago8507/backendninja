@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.udemy.entity.Course;
+import com.udemy.model.CourseModel;
 import com.udemy.service.CourseService;
 
 @Controller
@@ -31,16 +31,31 @@ public class CourseController {
 		LOG.info("call: CourseController.listAllCourses()");
 		ModelAndView mav = new ModelAndView(COURSES_VIEW);
 		mav.addObject("courses", courseService.listAllCourse());
-		mav.addObject("course", new Course());
+		mav.addObject("course", new CourseModel());
 		return mav;
 	}
 	
 	@PostMapping("addcourse")
-	public RedirectView addCourse(@ModelAttribute("course") Course course){
-		courseService.addCourse(course);
+	public RedirectView addCourse(@ModelAttribute("course") CourseModel courseModel){
+		LOG.info("call: CourseController.addCourse()");
+		courseService.addCourse(courseModel);
 		return new RedirectView("/"+COURSES_VIEW+"/listcourses");
 	}
 
+	@PostMapping("removecourse")
+	public RedirectView removeCourse(@ModelAttribute("course") CourseModel courseModel){
+		LOG.info("call: CourseController.removeCourse()");
+		courseService.removeCourse(courseModel);
+		return new RedirectView("/"+COURSES_VIEW+"/listcourses");
+	}
+	
+	@PostMapping("updatecourse")
+	public RedirectView updateCourse(@ModelAttribute("course") CourseModel courseModel){
+		LOG.info("call: CourseController.updateCourse()");
+		courseService.updateCourse(courseModel);
+		return new RedirectView("/"+COURSES_VIEW+"/listcourses");
+	}
+	
 //	@PostMapping("addcourse")
 //	public String addCourse(@ModelAttribute("course") Course course){
 //		LOG.info("call: CourseController.addCourse() -- Param: " + course.toString());
