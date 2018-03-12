@@ -1,0 +1,21 @@
+# WEB PROPERTIES
+server:
+  port: 8082
+  
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb
+    username: omar
+    password: root
+
+# JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
