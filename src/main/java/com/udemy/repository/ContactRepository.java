@@ -10,4 +10,6 @@ import com.udemy.entity.Contact;
 @Repository("contactRepository")
 public interface ContactRepository extends JpaRepository<Contact, Serializable>{
 
+	public abstract Contact findById(int id);
+	
 }

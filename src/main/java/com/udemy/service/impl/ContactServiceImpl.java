@@ -42,5 +42,18 @@ public class ContactServiceImpl implements ContactService{
 		return contactsModel;
 	}
 
-	
+
+	@Override
+	public Contact findById(int id) {
+		return contactRepository.findById(id);
+	}
+
+
+	@Override
+	public void removeContact(int id) {
+		Contact contact = findById(id);
+		if (null != contact) {
+		contactRepository.delete(contact);
+		}
+	}	
 }
