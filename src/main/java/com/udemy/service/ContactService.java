@@ -9,7 +9,8 @@ public interface ContactService {
 
 	public abstract ContactModel addContact(ContactModel contactModel);
 	public abstract List<ContactModel> listAllContacts();
-	public abstract Contact  findById(int id);
+	public abstract ContactModel  findById(int id);
 	public abstract void removeContact (int id);
+	public abstract void updateContact (ContactModel contactModel);
 	
 }
